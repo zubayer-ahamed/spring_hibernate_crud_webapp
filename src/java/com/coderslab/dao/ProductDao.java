@@ -23,10 +23,27 @@ public class ProductDao {
         this.sessionFactory = sessionFactory;
     }
     
-    
-    
     public List<Product> getAllProduct(){
         return getSessionFactory().getCurrentSession().createQuery("from Product").list();
+    }
+    
+    public Product getProduct(int id) {
+        return (Product) sessionFactory.getCurrentSession().get(Product.class, id);
+    }
+
+    public boolean saveProduct(Product product) {
+        sessionFactory.getCurrentSession().save(product);
+        return true;
+    }
+
+    public boolean updateProduct(Product product) {
+        sessionFactory.getCurrentSession().update(product);
+        return true;
+    }
+
+    public boolean deleteProduct(Product product) {
+        sessionFactory.getCurrentSession().delete(product);
+        return true;
     }
     
 }
